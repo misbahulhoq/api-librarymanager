@@ -18,7 +18,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/your-username/ts-node-starter.git
+   git clone https://github.com/misbah-ul-hoq/ts-node-starter.git
    cd ts-node-starter
    ```
 
