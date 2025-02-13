@@ -1,12 +1,16 @@
 {
-  "name": "neuratalk-api",
+  "name": "ts-node-starter",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "NODE_ENV=development ts-node-dev src/index.ts"
+    "dev": "ts-node-dev src/index.ts"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.8",
@@ -21,9 +25,5 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^4.21.2"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module"
+  }
 }
