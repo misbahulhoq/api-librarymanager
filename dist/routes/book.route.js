@@ -16,13 +16,24 @@ const express_1 = __importDefault(require("express"));
 const book_1 = require("../models/book");
 const booksRouter = express_1.default.Router();
 booksRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("GET /api/books");
     const books = yield book_1.Book.find();
     res.send(books);
 }));
 booksRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let book = new book_1.Book(req.body);
     book = yield book.save();
+    res.send(book);
+}));
+booksRouter.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const book = yield book_1.Book.findById(req.params.id);
+    res.send(book);
+}));
+booksRouter.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const book = yield book_1.Book.findByIdAndUpdate(req.params.id, req.body);
+    res.send(book);
+}));
+booksRouter.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const book = yield book_1.Book.findByIdAndDelete(req.params.id);
     res.send(book);
 }));
 exports.default = booksRouter;
