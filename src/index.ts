@@ -7,7 +7,15 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://librarymanager-kappa.vercel.app/",
+      "192.168.31.*",
+    ],
+  })
+);
 
 const port = process.env.PORT || 5000;
 
