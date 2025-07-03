@@ -12,7 +12,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://librarymanager-kappa.vercel.app/",
-      "192.168.31.*",
+      "192.168.31.27:3000",
     ],
   })
 );
