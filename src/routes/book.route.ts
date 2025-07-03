@@ -4,6 +4,7 @@ import { Book } from "../models/book";
 const booksRouter = e.Router();
 
 booksRouter.get("/", async (req, res) => {
+  console.log("GET /api/books");
   const books = await Book.find();
   res.send(books);
 });

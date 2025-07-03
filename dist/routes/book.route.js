@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const book_1 = require("../models/book");
 const booksRouter = express_1.default.Router();
 booksRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("GET /api/books");
     const books = yield book_1.Book.find();
     res.send(books);
 }));

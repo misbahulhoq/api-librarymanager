@@ -1,4 +1,4 @@
-import express, { Router, Express } from "express";
+import { Express } from "express";
 import booksRouter from "./book.route";
 
 export const routes = (app: Express) => {
