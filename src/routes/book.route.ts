@@ -20,7 +20,10 @@ booksRouter.get("/:id", async (req, res) => {
 });
 
 booksRouter.put("/:id", async (req, res) => {
-  const book = await Book.findByIdAndUpdate(req.params.id, req.body);
+  console.log("api is hitting", req.body, req.params.id);
+  const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
   res.send(book);
 });
 

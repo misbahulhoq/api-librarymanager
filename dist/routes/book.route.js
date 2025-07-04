@@ -29,7 +29,10 @@ booksRouter.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function
     res.send(book);
 }));
 booksRouter.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const book = yield book_1.Book.findByIdAndUpdate(req.params.id, req.body);
+    console.log("api is hitting", req.body, req.params.id);
+    const book = yield book_1.Book.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    });
     res.send(book);
 }));
 booksRouter.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {

@@ -27,7 +27,12 @@ borrowRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(400).send({ message: "Not enough copies" });
         return;
     }
+    console.log("book copies before subtraction", book.copies);
     book.copies -= req.body.quantities;
+    console.log("book copies after subtraction", book.copies);
+    if (book.copies === 0) {
+        book.available = false;
+    }
     yield book.save();
     b = yield b.save();
     res.send(b);
