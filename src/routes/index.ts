@@ -4,5 +4,5 @@ import borrowRouter from "./borrow.route";
 
 export const routes = (app: Express) => {
   app.use("/api/books", booksRouter);
-  app.use("/api/borrow", borrowRouter);
+  app.use("/api/borrows", borrowRouter);
 };

@@ -9,12 +9,10 @@ const borrowSchema = new mongoose.Schema({
   quantities: {
     type: Number,
     required: true,
-    default: 1,
   },
   dueDate: {
     type: Date,
     required: true,
-    default: Date.now(),
   },
 });
 

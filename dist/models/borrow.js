@@ -13,12 +13,10 @@ const borrowSchema = new mongoose_1.default.Schema({
     quantities: {
         type: Number,
         required: true,
-        default: 1,
     },
     dueDate: {
         type: Date,
         required: true,
-        default: Date.now(),
     },
 });
 const borrow = mongoose_1.default.model("Borrow", borrowSchema);

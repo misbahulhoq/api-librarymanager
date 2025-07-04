@@ -17,13 +17,16 @@ const borrow_1 = __importDefault(require("../models/borrow"));
 const book_1 = require("../models/book");
 const borrowRouter = express_1.default.Router();
 borrowRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     let b = new borrow_1.default(req.body);
     const book = yield book_1.Book.findById(req.body.bookId);
-    if (!book)
-        return res.status(400).send({ message: "Book not found" });
-    if (book.copies < req.body.quantities)
-        return res.status(400).send({ message: "Not enough copies" });
+    if (!book) {
+        res.status(404).send({ message: "Book not found" });
+        return;
+    }
+    if (book.copies < req.body.quantities) {
+        res.status(400).send({ message: "Not enough copies" });
+        return;
+    }
     book.copies -= req.body.quantities;
     yield book.save();
     b = yield b.save();
@@ -34,20 +37,3 @@ borrowRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     res.send(borrows);
 }));
 exports.default = borrowRouter;
-const test = (req, res) => {
-    console.log(req.body);
-    let b = new borrow_1.default(req.body);
-    const book = yield book_1.Book.findById(req.body.bookId);
-    if (!book)
-        return res.status(400).send({ message: "Book not found" });
-    if (book.copies < req.body.quantities)
-        return res.status(400).send({ message: "Not enough copies" });
-    book.copies -= req.body.quantities;
-    yield book.save();
-    b = yield b.save();
-    res.send(b);
-};
-borrowRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const borrows = yield borrow_1.default.find();
-    res.send(borrows);
-}));
