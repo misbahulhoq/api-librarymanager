@@ -32,7 +32,11 @@ mongoose
 routes(app);
 
 app.get("/", (_req, res) => {
-  res.send("Hello From Typescript");
+  res.send({
+    message: "Open source API developed with node, express and typescript",
+    developer: "Md Mezbah Uddin, a student of programming hero",
+    purpose: "Learning purpose and assignment",
+  });
 });
 
 app.listen(port, () => {
