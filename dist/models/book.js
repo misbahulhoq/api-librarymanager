@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Book = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-const test = "";
 const bookSchema = new mongoose_1.default.Schema({
     title: {
         type: String,
@@ -55,6 +54,17 @@ bookSchema.post("findOneAndUpdate", function (doc) {
             doc.available = true;
             yield doc.save();
         }
+    });
+});
+bookSchema.pre("save", function (next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (this.copies === 0) {
+            this.available = false;
+        }
+        else if (this.copies > 0) {
+            this.available = true;
+        }
+        next();
     });
 });
 exports.Book = mongoose_1.default.model("Book", bookSchema);

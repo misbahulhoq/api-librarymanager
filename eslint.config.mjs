@@ -25,6 +25,8 @@ export default tseslint.config(
           ignoreRestSiblings: true, // Don't flag rest siblings
         },
       ],
+      console: "error",
     },
+    files: ["**/*.ts", "**/*.tsx"],
   }
 );

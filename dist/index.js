@@ -29,9 +29,13 @@ mongoose_1.default
     console.log(err);
 });
 (0, routes_1.routes)(app);
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
     res.send("Hello From Typescript");
 });
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
+});
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send("Something broke!");
 });

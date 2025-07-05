@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import { routes } from "./routes";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -31,10 +31,15 @@ mongoose
 
 routes(app);
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.send("Hello From Typescript");
 });
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
+});
+
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
 });

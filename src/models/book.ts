@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-const test = "";
 
 const bookSchema = new mongoose.Schema({
   title: {
@@ -40,6 +39,15 @@ bookSchema.post("findOneAndUpdate", async function (doc) {
     doc.available = true;
     await doc.save();
   }
+});
+
+bookSchema.pre("save", async function (next) {
+  if (this.copies === 0) {
+    this.available = false;
+  } else if (this.copies > 0) {
+    this.available = true;
+  }
+  next();
 });
 
 export const Book = mongoose.model("Book", bookSchema);
