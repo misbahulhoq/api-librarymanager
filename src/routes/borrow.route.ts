@@ -26,7 +26,22 @@ borrowRouter.post("/", async (req: Request, res: Response) => {
 });
 
 borrowRouter.get("/", async (req, res) => {
-  const borrows = await Borrow.find();
+  const borrows = await Borrow.aggregate([
+    {
+      $group: { _id: "$bookId", borrowed: { $sum: "$quantities" } },
+    },
+    {
+      $lookup: {
+        from: "books",
+        localField: "_id",
+        foreignField: "_id",
+        as: "book",
+      },
+    },
+    {
+      $unwind: "$book",
+    },
+  ]);
   res.send(borrows);
 });
 

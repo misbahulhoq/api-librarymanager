@@ -38,7 +38,22 @@ borrowRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function*
     res.send(b);
 }));
 borrowRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const borrows = yield borrow_1.default.find();
+    const borrows = yield borrow_1.default.aggregate([
+        {
+            $group: { _id: "$bookId", borrowed: { $sum: "$quantities" } },
+        },
+        {
+            $lookup: {
+                from: "books",
+                localField: "_id",
+                foreignField: "_id",
+                as: "book",
+            },
+        },
+        {
+            $unwind: "$book",
+        },
+    ]);
     res.send(borrows);
 }));
 exports.default = borrowRouter;
