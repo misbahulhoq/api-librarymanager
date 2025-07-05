@@ -5,6 +5,7 @@ const booksRouter = e.Router();
 
 booksRouter.get("/", async (req, res) => {
   const books = await Book.find();
+  books.reverse();
   res.send(books);
 });
 

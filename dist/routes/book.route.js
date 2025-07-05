@@ -18,6 +18,7 @@ const t = "";
 const booksRouter = express_1.default.Router();
 booksRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const books = yield book_1.Book.find();
+    books.reverse();
     res.send(books);
 }));
 booksRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
