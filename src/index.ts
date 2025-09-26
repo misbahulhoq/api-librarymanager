@@ -43,6 +43,7 @@ app.get("/server-time", (_req, res) => {
   res.send({
     time: new Date(),
     formatted: new Date().toLocaleString(),
+    zone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   });
 });
 
