@@ -36,6 +36,12 @@ app.get("/", (_req, res) => {
         purpose: "Learning purpose and assignment",
     });
 });
+app.get("/server-time", (_req, res) => {
+    res.send({
+        time: new Date(),
+        formatted: new Date().toLocaleString(),
+    });
+});
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

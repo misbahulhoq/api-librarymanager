@@ -39,6 +39,13 @@ app.get("/", (_req, res) => {
   });
 });
 
+app.get("/server-time", (_req, res) => {
+  res.send({
+    time: new Date(),
+    formatted: new Date().toLocaleString(),
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
